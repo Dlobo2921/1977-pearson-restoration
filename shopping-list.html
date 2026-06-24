@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1977 Pearson 323 — Shopping List &amp; Pricing</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f5f1eb;
+      color: #1a1a1a;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 3px solid #1b3a5c;
+      padding-bottom: 20px;
+      margin-bottom: 36px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #1b3a5c;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    header .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .section {
+      margin-bottom: 36px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1b3a5c;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 4px 4px 0 0;
+    }
+
+    .section-header h2 {
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .section-header .source-tag {
+      font-size: 11px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: rgba(255,255,255,0.2);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .section-header.done {
+      background: #2d6a4f;
+    }
+
+    .section-header.future {
+      background: #4a5568;
+    }
+
+    .section-header.marine {
+      background: #7b5e2a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #d4cfc8;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f0ece5;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #555;
+      padding: 9px 14px;
+      text-align: left;
+      border-bottom: 1px solid #d4cfc8;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #f0ece6;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr.subtotal td {
+      background: #f5f1eb;
+      font-weight: bold;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      color: #1b3a5c;
+      border-top: 2px solid #d4cfc8;
+    }
+
+    tr.done-row td {
+      color: #2d6a4f;
+    }
+
+    td.price {
+      white-space: nowrap;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      color: #333;
+    }
+
+    td.note {
+      font-size: 13px;
+      color: #666;
+      font-style: italic;
+    }
+
+    td.search {
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #1b3a5c;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background: #d4edda;
+      color: #155724;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .tip-box {
+      background: #fdf8f0;
+      border: 1px solid #e0d8c8;
+      border-left: 4px solid #c8a84b;
+      border-radius: 0 0 4px 4px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+      border-top: none;
+    }
+
+    .budget-section {
+      margin-top: 40px;
+    }
+
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #d4cfc8;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .budget-table thead tr th {
+      background: #1b3a5c;
+      color: #fff;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 11px 18px;
+      text-align: left;
+    }
+
+    .budget-table td {
+      padding: 11px 18px;
+      border-bottom: 1px solid #f0ece6;
+      font-size: 14px;
+    }
+
+    .budget-table tr.total-row td {
+      background: #eef3f8;
+      font-weight: bold;
+      color: #1b3a5c;
+      font-size: 15px;
+      border-top: 2px solid #1b3a5c;
+    }
+
+    .budget-table td:last-child {
+      text-align: right;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .budget-note {
+      font-size: 12px;
+      color: #888;
+      font-style: italic;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      border-top: 1px solid #d4cfc8;
+      padding-top: 16px;
+    }
+
+    @media print {
+      body { background: white; padding: 20px; }
+      .section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>1977 Pearson 323 &mdash; Shopping List &amp; Pricing</h1>
+    <p class="subtitle">Chicago Captain &nbsp;&bull;&nbsp; Restoration begun June 2026</p>
+  </header>
+
+  <!-- ALREADY PURCHASED -->
+  <div class="section">
+    <div class="section-header done">
+      <h2>Already Purchased / In Hand</h2>
+      <span class="source-tag">Order #311451 &mdash; $861.09</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60%">Item</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="done-row"><td>EverSoft Smooth Indoor/Outdoor Off White 54&rdquo; Marine Vinyl Fabric &mdash; 7 yards</td><td><span class="status-badge">Shipped</span></td></tr>
+        <tr class="done-row"><td>Outdura&reg; Canvas Stucco 54&rdquo; Upholstery Fabric &mdash; 9 yards</td><td><span class="status-badge">Shipped</span></td></tr>
+        <tr class="done-row"><td>Crypton&reg; Home Bedford Smoke 55&rdquo; Fabric &mdash; 11 yards</td><td><span class="status-badge">Shipped</span></td></tr>
+        <tr class="done-row"><td>CushionRite&reg; Dry Fast Antimicrobial Foam &mdash; Outdoor Cushion Foam</td><td><span class="status-badge">Shipped</span></td></tr>
+        <tr class="done-row"><td>High-end sewing machine</td><td><span class="status-badge">In Hand</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INTERIOR CLEANING -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Amazon &mdash; Interior Cleaning</h2>
+      <span class="source-tag">Needed Now</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:42%">Item</th>
+          <th style="width:16%">Est. Price</th>
+          <th>Search Term</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Star Brite Sail &amp; Canvas Cleaner</td><td class="price">$15&ndash;20</td><td class="search">&ldquo;Star Brite sail canvas cleaner&rdquo;</td></tr>
+        <tr><td>Murphy Oil Soap (quart)</td><td class="price">$7</td><td class="search">&ldquo;Murphy Oil Soap&rdquo;</td></tr>
+        <tr><td>303 Aerospace Protectant (32 oz)</td><td class="price">$20</td><td class="search">&ldquo;303 Aerospace Protectant&rdquo;</td></tr>
+        <tr><td>Magic Eraser bulk pack</td><td class="price">$6</td><td class="search">&ldquo;Mr Clean Magic Eraser bulk&rdquo;</td></tr>
+        <tr><td>Detail brush kit (various sizes)</td><td class="price">$12</td><td class="search">&ldquo;detailing brush kit&rdquo;</td></tr>
+        <tr><td>Microfiber towels 30-pack</td><td class="price">$18</td><td class="search">&ldquo;microfiber towels bulk&rdquo;</td></tr>
+        <tr><td>Rechargeable cordless handheld vacuum</td><td class="price">$35&ndash;50</td><td class="search">&ldquo;cordless handheld vacuum&rdquo;</td></tr>
+        <tr><td>Spray bottles (set of 3)</td><td class="price">$8</td><td class="search">&ldquo;spray bottles set&rdquo;</td></tr>
+        <tr class="subtotal"><td>Subtotal</td><td class="price">~$121&ndash;141</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- UPHOLSTERY SUPPLIES -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Amazon &mdash; Upholstery Supplies</h2>
+      <span class="source-tag">Needed Now</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:38%">Item</th>
+          <th style="width:16%">Est. Price</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sew foam 1/8&rdquo; (1 yd x 54&rdquo;)</td><td class="price">$20&ndash;30</td><td class="note">For visible cushion faces &mdash; gives rounded yacht look</td></tr>
+        <tr><td>Marine-grade YKK zippers, assorted lengths</td><td class="price">$15&ndash;25</td><td class="note">Get 12&rdquo;, 18&rdquo;, 24&rdquo;, 36&rdquo; assortment</td></tr>
+        <tr><td>Piping / welt cord</td><td class="price">$10&ndash;15</td><td class="note">1/4&rdquo; size works for most boat cushions</td></tr>
+        <tr><td>Marine polyester thread (2 spools)</td><td class="price">$15&ndash;20</td><td class="note">UV and mildew resistant</td></tr>
+        <tr><td>Fabric marking chalk or tailor&rsquo;s pen</td><td class="price">$8&ndash;10</td><td class="note">For tracing patterns on fabric</td></tr>
+        <tr><td>Seam ripper (good quality)</td><td class="price">$5&ndash;8</td><td class="note">For opening existing cushions</td></tr>
+        <tr><td>Kraft paper roll (36&rdquo; wide)</td><td class="price">$18&ndash;25</td><td class="note">For pattern making</td></tr>
+        <tr><td>Binder + sheet protectors</td><td class="price">$12&ndash;15</td><td class="note">For permanent pattern library</td></tr>
+        <tr><td>Binder clips and masking tape</td><td class="price">$8</td><td class="note">For labeling and holding patterns</td></tr>
+        <tr class="subtotal"><td>Subtotal</td><td class="price">~$111&ndash;148</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HEAD HOSES -->
+  <div class="section">
+    <div class="section-header marine">
+      <h2>Marine Supply &mdash; Head Hoses</h2>
+      <span class="source-tag">West Marine / Defender / Jamestown</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:38%">Item</th>
+          <th style="width:16%">Est. Price</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Trident #102 sanitation hose (per foot)</td><td class="price">$3&ndash;5 /ft</td><td class="note">Measure existing runs before ordering; buy 20&ndash;25% extra</td></tr>
+        <tr><td>316 SS hose clamps, assorted sizes (box)</td><td class="price">$15&ndash;25</td><td class="note">Double-clamp all connections</td></tr>
+        <tr><td>Vinyl nitrile gloves</td><td class="price">$12</td><td class="note">Box of 100 &mdash; for head work</td></tr>
+        <tr class="subtotal"><td>Subtotal (varies by feet)</td><td class="price">~$65&ndash;105</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="tip-box">Tip: Before pulling old hoses, photograph the routing and measure each run. Typical head install uses 6&ndash;15 feet depending on layout.</div>
+  </div>
+
+  <!-- ENGINE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Amazon &mdash; Engine (Volvo Penta MD11C)</h2>
+      <span class="source-tag">Needed Soon</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:38%">Item</th>
+          <th style="width:16%">Est. Price</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Volvo Penta MD11C raw water impeller</td><td class="price">$30&ndash;50</td><td class="note">Search &ldquo;MD11C impeller&rdquo; or use GLM/Sierra cross-reference</td></tr>
+        <tr><td>Engine oil, 15W-40 diesel (2 qt)</td><td class="price">$15&ndash;20</td><td class="note">Volvo calls for 15W-40; verify in manual</td></tr>
+        <tr><td>Fuel filter element (MD11C)</td><td class="price">$15&ndash;25</td><td class="note">Have manual part number ready</td></tr>
+        <tr><td>Stop cable (Volvo Penta mechanical stop)</td><td class="price">$20&ndash;40</td><td class="note">Measure length needed before ordering</td></tr>
+        <tr class="subtotal"><td>Subtotal</td><td class="price">~$80&ndash;135</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- LIGHTING -->
+  <div class="section">
+    <div class="section-header future">
+      <h2>Amazon &mdash; Lighting</h2>
+      <span class="source-tag">Future Phase</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:48%">Item</th>
+          <th style="width:16%">Est. Price</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>COB warm white LED strip, 24V dimmable, 2700&ndash;3000K (5m)</td><td class="price">$35&ndash;50</td><td class="note">24V not 12V &mdash; more efficient for longer runs</td></tr>
+        <tr><td>Aluminum LED channels with diffuser (10 pack, 1m each)</td><td class="price">$25&ndash;35</td><td class="note">Creates even glow, no hot spots</td></tr>
+        <tr><td>Warm white LED puck lights (6 pack)</td><td class="price">$25</td><td class="note">Galley undershelf / floor</td></tr>
+        <tr><td>Adjustable brass LED gooseneck reading lights &times;2</td><td class="price">$50&ndash;80 ea.</td><td class="note">V-berth &mdash; brass matches the classic aesthetic</td></tr>
+        <tr><td>Dimmable touch switches (4 pack)</td><td class="price">$40&ndash;60</td><td class="note">One per cabin zone</td></tr>
+        <tr><td>USB-C PD + USB-A dual outlet panels &times;3</td><td class="price">$25&ndash;35 ea.</td><td class="note">Berth, salon, cockpit</td></tr>
+        <tr class="subtotal"><td>Subtotal</td><td class="price">~$280&ndash;390</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TEAK -->
+  <div class="section">
+    <div class="section-header future">
+      <h2>Amazon &mdash; Teak Refinishing</h2>
+      <span class="source-tag">Future Phase</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:48%">Item</th>
+          <th style="width:16%">Est. Price</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Teak two-part cleaner (quart set)</td><td class="price">$25&ndash;35</td><td class="note">Star Brite or TotalBoat</td></tr>
+        <tr><td>Teak oil or satin marine varnish (quart)</td><td class="price">$25&ndash;40</td><td class="note">Satin only &mdash; not gloss. Consider Deks Olje or Cetol</td></tr>
+        <tr><td>220-grit marine sandpaper (pack)</td><td class="price">$12</td><td class="note">Sand with the grain only</td></tr>
+        <tr><td>Foam sanding blocks</td><td class="price">$8</td><td class="note">Conforms to teak profiles</td></tr>
+        <tr><td>Chip brushes (pack of 10)</td><td class="price">$10</td><td class="note">Disposable &mdash; for varnish/oil application</td></tr>
+        <tr class="subtotal"><td>Subtotal</td><td class="price">~$80&ndash;105</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BUDGET SUMMARY -->
+  <div class="budget-section">
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Budget Summary &mdash; All Phases</th>
+          <th>Est. Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Already purchased &mdash; fabrics, foam (Order #311451)</td><td>$861.09</td></tr>
+        <tr><td>Interior cleaning supplies</td><td>$121&ndash;141</td></tr>
+        <tr><td>Upholstery supplies (thread, zippers, patterns, foam)</td><td>$111&ndash;148</td></tr>
+        <tr><td>Head hoses + clamps</td><td>$65&ndash;105</td></tr>
+        <tr><td>Engine service parts (MD11C)</td><td>$80&ndash;135</td></tr>
+        <tr><td>Lighting (future phase)</td><td>$280&ndash;390</td></tr>
+        <tr><td>Teak refinishing (future phase)</td><td>$80&ndash;105</td></tr>
+        <tr class="total-row"><td>Total Estimated (all phases)</td><td>~$1,598&ndash;1,885</td></tr>
+      </tbody>
+    </table>
+    <p class="budget-note">Does not include labor &mdash; Chicago Marine Canvas, rigger inspection, and professional upholsterer time will be separate quotes.</p>
+  </div>
+
+  <footer>
+    1977 Pearson 323 &nbsp;&bull;&nbsp; Chicago Captain &nbsp;&bull;&nbsp; Restoration begun June 2026
+  </footer>
+
+</div>
+</body>
+</html>

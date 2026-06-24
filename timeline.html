@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1977 Pearson 323 — Restoration Timeline</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #f5f1eb;
+      color: #1a1a1a;
+      padding: 40px 20px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 3px solid #1b3a5c;
+      padding-bottom: 20px;
+      margin-bottom: 36px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #1b3a5c;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    header .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    .phase {
+      margin-bottom: 40px;
+    }
+
+    .phase-header {
+      background: #1b3a5c;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 4px 4px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .phase-header h2 {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .phase-header .date-tag {
+      font-size: 12px;
+      background: rgba(255,255,255,0.2);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .phase-body {
+      background: #fff;
+      border: 1px solid #d4cfc8;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 20px 24px;
+    }
+
+    .goal-banner {
+      background: #eef3f8;
+      border-left: 4px solid #1b3a5c;
+      padding: 8px 14px;
+      font-size: 14px;
+      color: #1b3a5c;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .section-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #8a7a6a;
+      margin: 18px 0 10px 0;
+      border-bottom: 1px solid #e8e3db;
+      padding-bottom: 4px;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f0ece6;
+      line-height: 1.5;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li .box {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border: 2px solid #1b3a5c;
+      border-radius: 2px;
+      margin-top: 2px;
+      display: inline-block;
+    }
+
+    .sequence-list {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0;
+    }
+
+    .sequence-list li {
+      display: flex;
+      gap: 12px;
+      padding: 6px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f0ece6;
+      line-height: 1.5;
+      align-items: flex-start;
+    }
+
+    .sequence-list li:last-child { border-bottom: none; }
+
+    .step-num {
+      background: #1b3a5c;
+      color: #fff;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .note-box {
+      background: #fdf8f0;
+      border: 1px solid #e0d8c8;
+      border-left: 4px solid #c8a84b;
+      border-radius: 3px;
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+    }
+
+    .future-phase .phase-header {
+      background: #4a5568;
+    }
+
+    .notes-section {
+      background: #fff;
+      border: 1px solid #d4cfc8;
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-top: 10px;
+    }
+
+    .notes-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .notes-section ul li {
+      padding: 7px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f0ece6;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .notes-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #1b3a5c;
+    }
+
+    .notes-section ul li:last-child { border-bottom: none; }
+
+    .notes-header {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #1b3a5c;
+      margin-bottom: 14px;
+    }
+
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      border-top: 1px solid #d4cfc8;
+      padding-top: 16px;
+    }
+
+    @media print {
+      body { background: white; padding: 20px; }
+      .phase { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <h1>1977 Pearson 323 &mdash; Restoration Timeline</h1>
+    <p class="subtitle">Starting point: Weekend of June 21&ndash;22, 2026 &nbsp;&bull;&nbsp; Upholstery materials in hand (foam + all fabrics)</p>
+  </header>
+
+  <!-- WEEKEND -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Weekend &mdash; Cushion Teardown</h2>
+      <span class="date-tag">June 21&ndash;22</span>
+    </div>
+    <div class="phase-body">
+      <div class="goal-banner">Goal: Cushions out, fabric apart, panels labeled and ready to trace Monday</div>
+      <ul class="checklist">
+        <li><span class="box"></span>Remove ALL cushions &mdash; photograph each one in place before pulling it out</li>
+        <li><span class="box"></span>Label every cushion with masking tape + marker as you remove it: &ldquo;S1-Back&rdquo;, &ldquo;S1-Bottom&rdquo;, &ldquo;V-Berth Port&rdquo;, &ldquo;V-Berth Stbd&rdquo;, &ldquo;QBerth&rdquo;, etc.</li>
+        <li><span class="box"></span>Use seam ripper to carefully open every seam &mdash; keep panels intact, they ARE your patterns</li>
+        <li><span class="box"></span>Lay each panel flat, smooth, and label: &ldquo;S1-Back-FACE&rdquo;, &ldquo;S1-Back-BOXING&rdquo;, etc.</li>
+        <li><span class="box"></span>Stack by cushion, rubber-band or bag together</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MONDAY -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Monday &mdash; Patterns &amp; Salon Clean</h2>
+      <span class="date-tag">June 23</span>
+    </div>
+    <div class="phase-body">
+
+      <div class="section-label">Morning &mdash; Pattern Tracing &amp; Cutting</div>
+      <ul class="checklist">
+        <li><span class="box"></span>Lay each panel on kraft paper or Tyvek and trace the shape</li>
+        <li><span class="box"></span>Mark seam allowances (confirm with upholsterer &mdash; typically &frac12;&rdquo;)</li>
+        <li><span class="box"></span>Label every pattern piece; add grain/nap direction arrows</li>
+        <li><span class="box"></span>Cut out patterns and test-lay on new fabric before cutting</li>
+      </ul>
+
+      <div class="section-label">Afternoon &mdash; Salon Deep Clean</div>
+      <p style="font-size:13px; color:#555; margin-bottom:12px; font-style:italic;">Everything is out. Work top to bottom, port to starboard.</p>
+      <ol class="sequence-list">
+        <li><span class="step-num">1</span><span><strong>Vacuum</strong> &mdash; dry debris, corners, lockers, under all shelf lips</span></li>
+        <li><span class="step-num">2</span><span><strong>Fiberglass</strong> &mdash; Star Brite solution + Magic Eraser; scrub, wipe down with microfiber</span></li>
+        <li><span class="step-num">3</span><span><strong>Teak joinery</strong> &mdash; diluted Murphy Oil Soap, soft brush, scrub WITH the grain, wipe DRY immediately &mdash; do not let sit wet</span></li>
+        <li><span class="step-num">4</span><span><strong>Headliner</strong> &mdash; damp microfiber only, no saturating</span></li>
+        <li><span class="step-num">5</span><span><strong>End of day</strong> &mdash; apply 303 Aerospace Protectant to all fiberglass and vinyl once dry</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- TUESDAY -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Tuesday &mdash; Head / Bathroom</h2>
+      <span class="date-tag">June 24</span>
+    </div>
+    <div class="phase-body">
+      <ul class="checklist">
+        <li><span class="box"></span>Photograph hose routing and sizes before removing anything</li>
+        <li><span class="box"></span>Remove old hoses; mark connection points with tape</li>
+        <li><span class="box"></span>Measure and cut replacement hoses (Trident #102 sanitation hose or equivalent)</li>
+        <li><span class="box"></span>Install new 316 SS hose clamps &mdash; double-clamp all connections below waterline</li>
+        <li><span class="box"></span>Clean fiberglass and vinyl &mdash; same sequence as salon (vacuum &rarr; fiberglass &rarr; vinyl &rarr; 303)</li>
+        <li><span class="box"></span>Assess head floor vinyl &mdash; replace if lifting/damaged, or treat with 303</li>
+        <li><span class="box"></span>Leave companionway open overnight to dry</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WEDNESDAY -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Wednesday &mdash; V-Berth &amp; Nav Station</h2>
+      <span class="date-tag">June 25</span>
+    </div>
+    <div class="phase-body">
+      <div class="section-label">V-Berth</div>
+      <ul class="checklist">
+        <li><span class="box"></span>Remove any remaining items from v-berth</li>
+        <li><span class="box"></span>Clean fiberglass &mdash; Star Brite + Magic Eraser</li>
+        <li><span class="box"></span>Clean any teak trim &mdash; Murphy Oil Soap, dry immediately</li>
+        <li><span class="box"></span>Wipe down all surfaces with 303</li>
+        <li><span class="box"></span>Check forward hatch seal condition</li>
+      </ul>
+      <div class="section-label">Navigation Station / Settee Area</div>
+      <ul class="checklist">
+        <li><span class="box"></span>Lockers &mdash; vacuum and wipe all interior surfaces</li>
+        <li><span class="box"></span>Check all thru-hull valves in this area for free movement</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- THURSDAY-FRIDAY -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Thursday &ndash; Friday &mdash; Fabric Cutting</h2>
+      <span class="date-tag">June 26&ndash;27</span>
+    </div>
+    <div class="phase-body">
+      <p style="font-size:13px; color:#555; margin-bottom:12px; font-style:italic;">Runs parallel with final interior dry-out.</p>
+      <ul class="checklist">
+        <li><span class="box"></span>All patterns finalized and confirmed with upholsterer</li>
+        <li><span class="box"></span>Cut all fabric pieces for salon cushions</li>
+        <li><span class="box"></span>Cut all fabric pieces for v-berth cushions</li>
+        <li><span class="box"></span>Cut boxing strips and piping cord covers</li>
+        <li><span class="box"></span>Organize all cut pieces by cushion in labeled bags</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WEEK OF JUNE 30 -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Week of June 30 &mdash; Sewing: Salon Cushions</h2>
+      <span class="date-tag">June 30 &ndash; July 4</span>
+    </div>
+    <div class="phase-body">
+      <ul class="checklist">
+        <li><span class="box"></span>Start with the smallest salon cushion (learning piece &mdash; mistakes are fine here)</li>
+        <li><span class="box"></span>Attach piping to face panels</li>
+        <li><span class="box"></span>Sew face + boxing</li>
+        <li><span class="box"></span>Install zipper</li>
+        <li><span class="box"></span>Insert foam</li>
+        <li><span class="box"></span>After each cushion: trace finished dimensions onto kraft paper; update pattern binder</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WEEK OF JULY 7 -->
+  <div class="phase">
+    <div class="phase-header">
+      <h2>Week of July 7 &mdash; Sewing: V-Berth &amp; Remaining</h2>
+      <span class="date-tag">July 7&ndash;11</span>
+    </div>
+    <div class="phase-body">
+      <ul class="checklist">
+        <li><span class="box"></span>V-berth cushions</li>
+        <li><span class="box"></span>Quarter berth / nav seat (if applicable)</li>
+        <li><span class="box"></span>Final cushions installed in fully clean, dry interior</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOLLOWING WEEKS -->
+  <div class="phase future-phase">
+    <div class="phase-header">
+      <h2>Following Weeks &mdash; Systems &amp; Finishing</h2>
+      <span class="date-tag">July &ndash; August</span>
+    </div>
+    <div class="phase-body">
+      <ul class="checklist">
+        <li><span class="box"></span>Teak refinishing &mdash; two-part cleaner, light sand, satin finish</li>
+        <li><span class="box"></span>Lighting installation &mdash; LED strips, dimmers, reading lights</li>
+        <li><span class="box"></span>Stop cable reconnection and adjustment (engine)</li>
+        <li><span class="box"></span>Rigging inspection (hire rigger)</li>
+        <li><span class="box"></span>Canvas &mdash; dodger and bimini (Chicago Marine Canvas)</li>
+        <li><span class="box"></span>Full engine service &mdash; impeller, oil, filters, zincs</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- NOTES -->
+  <div class="notes-header" style="margin-top:32px;">Standing Rules</div>
+  <div class="notes-section">
+    <ul>
+      <li>After every phase: close the boat up for a 24-hour dry-out before installing anything new</li>
+      <li>Document every step &mdash; photos before and after each area</li>
+      <li>Keep the pattern binder current &mdash; trace every finished cushion before moving on to the next</li>
+    </ul>
+  </div>
+
+  <footer>
+    1977 Pearson 323 &nbsp;&bull;&nbsp; Chicago Captain &nbsp;&bull;&nbsp; Restoration begun June 2026
+  </footer>
+
+</div>
+</body>
+</html>
